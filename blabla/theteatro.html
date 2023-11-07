@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>documento top</title>
+    <style>
+        button {
+            border: none;
+            height: 21px;
+            width: 30px;
+            background: none;
+
+        }
+
+        img {
+            height: 20px;
+        }
+
+        .umAcinco {
+            background-color: rgb(75, 75, 216);
+        }
+
+        .seisAdez {
+        background-color: rgb(240, 71, 71);
+        }
+
+        .onzeAquinze {
+            background-color: rgb(255, 219, 57);
+        }
+
+        div {
+            height: 10px;
+            width: 10px;
+            display: flex;
+        }
+
+        #ver {
+            margin: auto;
+            background-color: rgb(45, 148, 148);
+            border-radius: 20px;
+            width: 100px;
+            height: 25px;
+        }
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <h1> Reserva de Cadeiras teatro</h1>
+        <p><div style="background-color: rgb(75, 75, 216);"></div>Fila 1 a 5: 50 reais</p>
+        <p><div style="background-color: rgb(240, 71, 71);"></div> Fila 6 a 10: 40 reais</p>
+        <p><div  style="background-color: rgb(255, 219, 57);"></div> Fila 11 a 15: 30 reais</p>
+        <p>20 cadeiras centrais: +10%</p>
+        <table>
+        <tr>
+
+    </table>
+
+    <button id="ver" onclick="Verificar()">Verificar  o preço total</button>
+
+    <script>
+        table = document.querySelector("table")
+
+        var img
+        
+
+        for (c = 0; c < 600; c++) {
+
+            if (c % 40 == 0) {
+                table.innerHTML += "</tr><tr>"
+            }
+
+            table.innerHTML += `<button class=" ${parte(c)}"><img id="${c}" class="imagens" src="poltrona1.png"></button>`
+        }
+
+        function parte(n) {
+            if (n >= 0 && n < 200) {
+                return "umAcinco"
+            } else if (n >= 200 && n < 400) {
+                return "seisAdez"
+            } else {
+                return "onzeAquinze"
+            }
+        }
+
+        var imagens = document.querySelectorAll(".imagens")
+
+        imagens.forEach(function(imagem) {
+            imagem.addEventListener("click", function () {
+                imagem.style.height = "10px"
+            })
+        })
+
+        function Verificar() {
+
+
+
+            var preco = 0
+            
+
+
+
+            for (c = 0; c < 600; c++) {
+                if (document.getElementById(c).style.height == "10px") {
+                    if (c >= 0 && c < 200) {
+                        preco += 50
+                        if (c % 40 > 9 && c % 40 < 30) {
+                            
+                            preco += Number(50 / 10)
+                        }
+                        
+                    } else if (c >= 200 && c < 400) {
+                        preco += 40
+                        if (c % 40 > 9 && c % 40 < 30) {
+                            
+                            preco += Number(40 / 10)
+                        }
+                        
+                    } else {
+                        preco += 30
+                        if (c % 40 > 9 && c % 40 < 30) {
+                            
+                            preco += Number(30 / 10)
+                        }
+                        
+                    }
+                }
+                
+            }
+
+           alert(preco)
+        }
+
+    </script>
+</body>
+
+</html>
